@@ -14,4 +14,9 @@
   :pathname "src"
   :components ((:file "package"))
   :description "CL-SAT binding to PicoSAT"
-  :in-order-to ((test-op (test-op :cl-sat.picosat.test))))
+  :in-order-to ((test-op (test-op :cl-sat.picosat.test)))
+  :perform
+  (load-op :before (op c)
+            (uiop:symbol-call :trivial-package-manager
+                              :ensure-program
+                              "picosat" :apt "picosat")))
