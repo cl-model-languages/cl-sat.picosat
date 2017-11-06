@@ -18,6 +18,11 @@
   :defsystem-depends-on (:trivial-package-manager)
   :perform
   (load-op :before (op c)
-            (uiop:symbol-call :trivial-package-manager
-                              :ensure-program
-                              "picosat" :apt "picosat")))
+           (uiop:symbol-call :trivial-package-manager
+                             :ensure-program
+                             "picosat"
+                             :apt "picosat"
+                             :dnf "picosat"
+                             :yum "picosat"
+                             :from-source (format nil "make -C ~a"
+                                                  (asdf:system-source-directory :cl-sat.picosat)))))
