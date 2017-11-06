@@ -1,8 +1,11 @@
 
 # Cl-Sat.Picosat - CL-SAT binding to PicoSAT
 
-## Usage
-
+This is a CL-SAT binding to [PicoSAT](http://fmv.jku.at/picosat/),
+a SAT solver which frequently appear in the SATRace competition.
+It is somehow advertized as "faster than minisat 2.0 in industrial track", according to the Ubuntu package description,
+and has many bindings in other languages.
+However, the most recent competition winners are Glucose/Lingeling, so we rather recommend cl-sat.glucose.
 
 ## Dependencies
 This library is at least tested on implementation listed below:
