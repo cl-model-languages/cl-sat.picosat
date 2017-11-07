@@ -1,13 +1,12 @@
 
 version = 965
 
-picosat.tar.gz:
-	curl http://fmv.jku.at/picosat/picosat-$(version).tar.gz > picosat.tar.gz
+all: picosat/picosat
 
 picosat:
-	tar xvf picosat.tar.gz
+	curl http://fmv.jku.at/picosat/picosat-$(version).tar.gz | tar xz
 	mv picosat-$(version) picosat
 
-picosat/picosat:
-	$(MAKE) -C picosat
+picosat/picosat: picosat
+	cd picosat ; ./configure.sh ; $(MAKE)
 
