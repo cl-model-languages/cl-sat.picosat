@@ -30,21 +30,7 @@
          (values nil nil nil))
         ((_ _ 10)
          ;; sat
-         (ematch (iter (for token in-file (format nil "~a/result" dir))
-                       (collect token))
-           ((list* _ _ _ assignments)
-            ;; somehow this format is different from minisat ---
-            ;; minisat has
-            ;; satisfiable
-            ;; <vars>
-            ;; picosat has
-            ;; s satisfiable
-            ;; v <vars>
-            (values
-             (iter (for v in (sat-instance-variables *instance*))
-                   (for a in assignments)
-                   (when (plusp a) (collect v)))
-             t t))))
+         (parse-dimacs-output (format nil "~a/result" dir) *instance*))
         ((_ _ 20)
          ;; unsat
          (values nil nil t))))))
