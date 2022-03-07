@@ -17,8 +17,9 @@
       "picosat"
       (merge-pathnames "picosat" *picosat-home*)))
 
-(defmethod solve ((input pathname) (solver (eql :picosat)) &rest options)
-  (with-temp (dir :directory t :template "picosat.XXXXXXXX")
+(defmethod solve ((input pathname) (solver (eql :picosat)) &rest options &key debug &allow-other-keys)
+  (remf options :debug)
+  (with-temp (dir :directory t :template "picosat.XXXXXXXX" :debug debug)
     (let* ((command (format nil "cd ~a; ~a ~{~A~^ ~} ~a"
                             (namestring dir)
                             (namestring (picosat-binary))
